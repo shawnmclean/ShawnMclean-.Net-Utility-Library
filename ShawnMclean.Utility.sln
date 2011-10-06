@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{ACB22F6C-EA3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0CFD83BD-C5A8-4861-B4B7-7E5C5AC45E29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShawnMclean.Utility.Tests", "ShawnMclean.Utility.Tests\ShawnMclean.Utility.Tests.csproj", "{4F594AA3-3027-41BE-98F4-0A5E99401E72}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShawnMclean.Utility.Tests", "tests\ShawnMclean.Utility.Tests\ShawnMclean.Utility.Tests.csproj", "{4F594AA3-3027-41BE-98F4-0A5E99401E72}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
