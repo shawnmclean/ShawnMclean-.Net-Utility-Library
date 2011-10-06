@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShawnMclean.Utility", "src\ShawnMclean.Utility\ShawnMclean.Utility.csproj", "{D13E5A38-8AC9-496B-A3FD-6BAD4E3370CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{ACB22F6C-EA3D-4995-8460-1603CE4A6429}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0CFD83BD-C5A8-4861-B4B7-7E5C5AC45E29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShawnMclean.Utility.Tests", "ShawnMclean.Utility.Tests\ShawnMclean.Utility.Tests.csproj", "{4F594AA3-3027-41BE-98F4-0A5E99401E72}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = ShawnMclean.Utility.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D13E5A38-8AC9-496B-A3FD-6BAD4E3370CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D13E5A38-8AC9-496B-A3FD-6BAD4E3370CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D13E5A38-8AC9-496B-A3FD-6BAD4E3370CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D13E5A38-8AC9-496B-A3FD-6BAD4E3370CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F594AA3-3027-41BE-98F4-0A5E99401E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F594AA3-3027-41BE-98F4-0A5E99401E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F594AA3-3027-41BE-98F4-0A5E99401E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F594AA3-3027-41BE-98F4-0A5E99401E72}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D13E5A38-8AC9-496B-A3FD-6BAD4E3370CC} = {ACB22F6C-EA3D-4995-8460-1603CE4A6429}
+		{4F594AA3-3027-41BE-98F4-0A5E99401E72} = {0CFD83BD-C5A8-4861-B4B7-7E5C5AC45E29}
+	EndGlobalSection
+EndGlobal
