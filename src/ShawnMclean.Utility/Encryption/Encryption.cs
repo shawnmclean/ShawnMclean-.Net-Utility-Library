@@ -4,9 +4,9 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace ShawnMclean.Utility.Helpers
+namespace ShawnMclean.Utility
 {
-    public static class EncryptionHelpers
+    public static class Encryption
     {
         /// <summary>
         /// Hash a text with SHA-512 bit encryption that also accepts a salt

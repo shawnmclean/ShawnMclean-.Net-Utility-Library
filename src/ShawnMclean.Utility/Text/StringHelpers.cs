@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace ShawnMclean.Utility.Helpers
+namespace ShawnMclean.Utility.Text
 {
     /// <summary>
     /// Used to generate a random string
