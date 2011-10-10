@@ -10,14 +10,28 @@ namespace ShawnMclean.Utility
     {
         SHA1,
         SHA256,
-        SHA512
+        SHA512,
+        MD5
     }
 
     public class Hashing
     {
 
+        /// <summary>
+        /// Generates a hash for the given plain text value and returns a
+        /// base64-encoded result. Before the hash is computed, a random salt
+        /// is generated and appended to the plain text. This salt is stored at
+        /// the end of the hash value, so it can be used later for hash
+        /// </summary>
+        /// <param name="plainText">Plain text value to be hashed. Throws ArgumentNullException if null.</param>
+        /// <param name="saltBytes">Byte array of a salt to be added to the hash. Throws ArgumentNullException if null.</param>
+        /// <param name="hashAlgorithm">The algorithm to be used. Throws ArgumentOutOfRangeException if some unknown value is passed.</param>
+        /// <returns>Hash value formatted as a base64-encoded string.</returns>
         public static string ComputeHash(string plainText, byte[] saltBytes, HashAlgorithmType hashAlgorithm)
         {
+            if (plainText == null) throw new ArgumentNullException("plainText");
+            if (saltBytes == null) throw new ArgumentNullException("saltBytes");
+
             //convert the plain text into a byte array
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
 
@@ -50,10 +64,11 @@ namespace ShawnMclean.Utility
                 case HashAlgorithmType.SHA512:
                     hash = new SHA512Managed();
                     break;
-
-                default:
+                case HashAlgorithmType.MD5:
                     hash = new MD5CryptoServiceProvider();
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException("hashAlgorithm");
             }
 
             // Compute hash value of our plain text with appended salt.
@@ -78,25 +93,5 @@ namespace ShawnMclean.Utility
             return hashValue;
         }
 
-        /// <summary>
-        /// Hash a text with SHA-512 bit encryption that also accepts a salt
-        /// </summary>
-        /// <param name="text">string to be hashed</param>
-        /// <param name="salt">salt to be added to the string</param>
-        /// <returns></returns>
-        public static string HashSHA512(string text, string salt)
-        {
-            string saltAndPwd = String.Concat(text, salt);
-
-            var ae = new ASCIIEncoding();
-            byte[] hashValue, messageBytes = ae.GetBytes(saltAndPwd);
-            var sHhash = new SHA512Managed();
-
-            hashValue = sHhash.ComputeHash(messageBytes);
-
-            sHhash.Dispose();
-
-            return ae.GetString(hashValue);
-        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using ShawnMclean.Utility.Extensions;
 
 namespace ShawnMclean.Utility.Text
 {

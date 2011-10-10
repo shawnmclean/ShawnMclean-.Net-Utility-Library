@@ -43,7 +43,7 @@
     <Compile Include="Collections\Filters.cs" />
     <Compile Include="Conversions\StringConverter.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
-    <Compile Include="Encryption\Encryption.cs" />
+    <Compile Include="Encryption\Hashing.cs" />
     <Compile Include="Text\StringHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
