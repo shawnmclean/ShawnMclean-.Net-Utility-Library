@@ -11,7 +11,8 @@ namespace ShawnMclean.Utility
         SHA1,
         SHA256,
         SHA512,
-        MD5
+        MD5,
+        PBKDF2
     }
 
     public class Hashing
@@ -24,16 +25,20 @@ namespace ShawnMclean.Utility
         /// the end of the hash value, so it can be used later for hash
         /// </summary>
         /// <param name="plainText">Plain text value to be hashed. Throws ArgumentNullException if null.</param>
-        /// <param name="saltBytes">Byte array of a salt to be added to the hash. Throws ArgumentNullException if null.</param>
+        /// <param name="salt">Salt to be added to the hash. If hashAlgorithm is PBKDF2, salt must be in the 
+        /// format: '{iterations}.{saltstring}'. FormatException thrown if not in that format. Throws ArgumentNullException if null.</param>
         /// <param name="hashAlgorithm">The algorithm to be used. Throws ArgumentOutOfRangeException if some unknown value is passed.</param>
         /// <returns>Hash value formatted as a base64-encoded string.</returns>
-        public static string ComputeHash(string plainText, byte[] saltBytes, HashAlgorithmType hashAlgorithm)
+        public static string ComputeHash(string plainText, string salt, HashAlgorithmType hashAlgorithm)
         {
             if (plainText == null) throw new ArgumentNullException("plainText");
-            if (saltBytes == null) throw new ArgumentNullException("saltBytes");
+            if (salt == null) throw new ArgumentNullException("salt");
 
             //convert the plain text into a byte array
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+
+            //convert the salt into a byte array
+            byte[] saltBytes = Encoding.UTF8.GetBytes(salt);
 
             // Allocate array, which will hold plain text and salt.
             byte[] plainTextWithSaltBytes =
@@ -67,6 +72,29 @@ namespace ShawnMclean.Utility
                 case HashAlgorithmType.MD5:
                     hash = new MD5CryptoServiceProvider();
                     break;
+                case HashAlgorithmType.PBKDF2:
+                    //get the position of the . that splits the string
+                    var i = salt.IndexOf('.');
+                    
+                    //Throw exception if i = -1
+                    if (i < 1)
+                        throw new FormatException("salt is not in the expected format of '{int}.{string}'");
+
+                    var iters = int.Parse(salt.Substring(0, i), System.Globalization.NumberStyles.HexNumber);
+
+                    //Throws exception if iteration is is less than 1
+                    if (iters < 1)
+                        throw new ArgumentOutOfRangeException("salt","Iterations in salt must be greater than 0.");
+
+
+                    salt = salt.Substring(i + 1);
+
+                    using (var pbkdf2 = new Rfc2898DeriveBytes(plainText, saltBytes, iters))
+                    {
+                        var key = pbkdf2.GetBytes(64);
+                        return Convert.ToBase64String(key);
+                    }
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException("hashAlgorithm");
             }
@@ -91,6 +119,23 @@ namespace ShawnMclean.Utility
 
             // Return the result.
             return hashValue;
+        }
+
+
+
+        /// <summary>
+        /// Convenience wrapper around Random to grab a new salt value.
+        /// Treat this value as opaque, as it captures iterations.
+        /// </summary>
+        public static string GenerateSalt(int explicitIterations, int saltSize)
+        {
+            var rand = RandomNumberGenerator.Create();
+
+            var ret = new byte[saltSize];
+
+            rand.GetBytes(ret);
+
+            return explicitIterations + "." + Convert.ToBase64String(ret);
         }
 
     }
