@@ -30,5 +30,14 @@ namespace ShawnMclean.Utility.Conversions
             }
             throw new InvalidOperationException();
         }
+
+        public static string ThousandsToK(this int num)
+        {
+            if (num < 1000)
+                return num.ToString();
+
+            double val = num;
+            return string.Format("{0}K", val/1000);
+        }
     }
 }
