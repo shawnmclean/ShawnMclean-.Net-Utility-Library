@@ -40,15 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\Count.cs" />
     <Compile Include="Collections\Filters.cs" />
+    <Compile Include="Collections\Search.cs" />
+    <Compile Include="Collections\Sorting.cs" />
     <Compile Include="Conversions\StringConverter.cs" />
+    <Compile Include="DataStructures\Graph\IEdge.cs" />
+    <Compile Include="DataStructures\Graph\INode.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Encryption\Hashing.cs" />
     <Compile Include="Text\StringHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataStructures\" />
+    <Folder Include="Facades\Logging\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
